@@ -1,0 +1,22 @@
+---
+output:
+  html_document:
+    df_print: paged
+---
+
+# Chapter 1 
+
+This is a markdown template that can be integrated into the full book.
+
+Please proceed in this way:
+
+* Copy chapter1.Rmd to a new file, rename as you see fit.
+* Append the file path to **_bookdown.yml** in the root folder, e.g. **rmd_files: ["index.Rmd","chapter1.Rmd",...]**
+* Write your markdown, save, commit and push.
+* The book will be built automatically when pushed and is available at [ekstroem.github.io](https://ekstroem.github.io/UEFA2020-prediction-competition/)
+
+```{r include=FALSE }
+
+print("Begin markdown from here...")
+
+```

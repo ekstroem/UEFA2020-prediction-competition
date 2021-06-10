@@ -1,0 +1,44 @@
+on:
+  push:
+     branches:
+       - main
+
+name: uefa-2020-prediction-competition
+
+jobs:
+  bookdown:
+    name: render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Update
+        run: sudo apt-get update
+      - name: Install rmarkdown, bookdown, devtools, pacman
+        run: Rscript -e 'install.packages(c("rmarkdown","bookdown","pacman"))'
+      - name: Render Book
+        run: Rscript -e 'bookdown::render_book("index.Rmd")'
+      - uses: actions/upload-artifact@v1
+        with:
+          name: _book
+          path: _book/
+
+  deploy-to-branch:
+    runs-on: ubuntu-latest
+    needs: bookdown
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: _book 
+        path: _book
+    - name: Deploy to Pages
+      uses: Cecilapp/GitHub-Pages-deploy@v3
+      with:
+        build_dir: _book/
+        jekyll: no                    
+      env:
+        BUILD_DIR: _book/

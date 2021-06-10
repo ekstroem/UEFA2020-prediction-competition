@@ -1,0 +1,38 @@
+--- 
+title: "UEFA 2020 Prediction Competition"
+author: "Claus Thorn Ekstrøm"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: ekstroem/UEFA2020-prediction-competition
+description: "The UEFA EURO 2020 tournament is finally starting and 24 teams are competing to be able to raise the trophy on July 11th. While the individual games are exciting and interesting by themselves, they are no match for the competition as to which data analyst will provide the best prediction of the tournament results. And you are hereby invited to participate!"
+knit: (function(inputFile, encoding) { 
+    rmarkdown::render(inputFile,
+                      encoding=encoding, 
+                      output_file=file.path('index.html')) })
+---
+
+# UEFA 2020 Prediction Competition
+
+The UEFA EURO 2020 tournament is finally starting and 24 teams are competing to be able to raise the trophy on July 11th. While the individual games are exciting and interesting by themselves, they are no match for the competition as to which data analyst will provide the best prediction of the tournament results. And you are hereby invited to participate!
+
+## Rules for participation
+We would like to find the best UEFA 2020 tournament predictor. We pose no restrictions on how the predictions were made (it can be your favorite statistical method, from reading tea leaves, from sacrificing a rooster at dawn, or any other method), but you need to follow these rules:
+
+* Deadline for prediction submissions is Thursday, June 10th, 2021 by midnight CEST.
+* Submissions should be given as pull requests to the GitHub repository https://github.com/ekstroem/UEFA2020-prediction-competition.
+* One entry per person.
+* You should be willing to explain how you obtained the prediction.
+* The prediction winner will be the participant who provided a prediction that will return the lowest Tournament Rank Prediction Score as proposed in Evaluating one-shot tournament predictions by Ekstrøm, Van Eetvelde, Ley and Brefeld. The socceR package on CRAN will be used for the computation.
+* Your submission should be a 6 x 24 matrix where the columns represent the countries, and the rows represent the possible ranks obtained after the tournament is over. The entries in the matrix should be numbers between 0 and 1 and represent probabilities that a given country will end up at a given rank. Consequently, each column must sum to 1. The code below will give provide you with an empty matrix (filled with 0s) with the desired order of the countries and ranks. Essentially, you just need to fill out the numbers in the matrix and upload that to GitHub.
+
+```{r include=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
